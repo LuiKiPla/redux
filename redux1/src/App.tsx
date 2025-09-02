@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux'
-import './App.css'
-import type { TodoState } from './store/types'
-import { useTypedSelector, type AppDispatch } from './store/store'
-import { useEffect } from 'react'
-import { fetchTodos } from './store/actionCreator'
+import { useDispatch, useSelector } from "react-redux";
+import "./App.css";
+import type { TodoState } from "./store/types";
+import { useTypedSelector, type AppDispatch } from "./store/store";
+import { useCallback, useEffect, useState } from "react";
+import { deleteTodo, fetchTodos } from "./store/actionCreator";
 // import { useSelector, useDispatch } from 'react-redux'
 // import type { RootState, AppDispatch } from './store/store'
 
@@ -11,7 +11,6 @@ import { fetchTodos } from './store/actionCreator'
 //   const count = useSelector((state: RootState) => state.count)
 //   const dispatch = useDispatch<AppDispatch>()
 
-  
 //   return (
 //     <>
 //       <div>
@@ -39,36 +38,95 @@ import { fetchTodos } from './store/actionCreator'
 // }
 
 function App() {
+  const { todos, error, loading } = useTypedSelector((state) => state);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const {todos, error, loading} = useTypedSelector(state => state)
-  const dispatch = useDispatch<AppDispatch>()
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    dispatch(fetchTodos())
-  }, [])
+    console.log('Loaded')
+    dispatch(fetchTodos());
+  }, []);
 
-
-  if(loading) {
-    return <h1>Идёт загрузка!</h1>
+  if (loading) {
+    return <h1>Идёт загрузка!</h1>;
   }
 
   if (error) {
-    return <h1>{error}</h1>
+    return <h1>{error}</h1>;
   }
 
   return (
     <>
       <div>
+        {/* {console.log(todos.length)}
         {todos.map(todo => (
           <div key={todo.id}>
             {todo.id} - {todo.title}
+            <button onClick={() => dispatch(deleteTodo(todo.id))}>Удалить</button>
           </div>
-        ))}
+        ))} */}
+        {/* ---------------------------------------------------------------------------- */}
+        <div className="nameHeader">
+          <h1>Todos</h1>
+        </div>
+        <div className="todoPropertiesHeader">
+          <div className="propertyCell">Id</div>
+          <div className="propertyCell">Title</div>
+          <div className="propertyCell">Completed</div>
+          <div className="propertyCell">Actions</div>
+        </div>
+        <div className="todosInCurrentPage">
+          {todos
+            .slice(10 * (currentPage - 1), 10 + 10 * (currentPage - 1))
+            .map((todo) => (
+              <>
+                <div className="todoInCurrentPage">
+                  <div className="propertyCell">{todo.id}</div>
+                  <div className="propertyCell">{todo.title}</div>
+                  <div className="propertyCell">
+                    {todo.completed.toString()}
+                  </div>
+                  <div className="actionsCell">
+                    <div className="actionCell">
+                      <button
+                      onClick={() => {
+                        dispatch(deleteTodo(todo.id))
+                      }}>Удалить</button>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ))}
+        </div>
+        <div className="pageNumber">
+          <div className="previousPage">
+            <button
+              onClick={() => {
+                if (currentPage != 1) {
+                  setCurrentPage(currentPage - 1);
+                }
+              }}
+            >
+              Предыдущие
+            </button>
+          </div>
+          <div className="currentPage">{currentPage}</div>
+          <div>
+            <button
+              onClick={() => {
+                if (currentPage != 20) {
+                  setCurrentPage(currentPage + 1);
+                }
+              }}
+            >
+              Следующие
+            </button>
+          </div>
+        </div>
       </div>
     </>
-  )
-
+  );
 }
 
-
-export default App
+export default App;

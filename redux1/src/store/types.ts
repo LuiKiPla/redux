@@ -17,7 +17,8 @@ export interface TodoState {
 export enum todosActionTypes {
   FETCH_TODOS = 'FETCH_TODOS',
   FETCH_TODOS_SUCCESS = 'FETCH_TODOS_SUCCESS',
-  FETCH_TODOS_ERROR = 'FETCH_TODOS_ERROR'
+  FETCH_TODOS_ERROR = 'FETCH_TODOS_ERROR',
+  DELETE_TODO = 'DELETE_TODO'
 }
 
 export interface FetchTodosAction {
@@ -34,6 +35,11 @@ export interface FetchTodosActionError {
   payload: string
 }
 
-export type TodosActions = FetchTodosAction | FetchTodosActionSuccess | FetchTodosActionError
+export interface DeleteTodo {
+  type: todosActionTypes.DELETE_TODO,
+  payload: number
+}
+
+export type TodosActions = FetchTodosAction | FetchTodosActionSuccess | FetchTodosActionError | DeleteTodo
 
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { todosActionTypes, type TodosActions } from "./types";
+import { todosActionTypes, type DeleteTodo, type TodosActions } from "./types";
 import type { Dispatch } from "redux";
 
 export const fetchTodos = () => {
@@ -15,7 +15,7 @@ export const fetchTodos = () => {
           type: todosActionTypes.FETCH_TODOS_SUCCESS,
           payload: responce.data,
         });
-      }, 10000);
+      }, 5000);
     } catch (error) {
       dispatch({
         type: todosActionTypes.FETCH_TODOS_ERROR,
@@ -24,3 +24,8 @@ export const fetchTodos = () => {
     }
   };
 };
+
+export const deleteTodo = (id: number): DeleteTodo => ({
+  type: todosActionTypes.DELETE_TODO,
+  payload: id
+})

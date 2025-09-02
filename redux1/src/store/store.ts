@@ -25,9 +25,6 @@
 import { applyMiddleware, createStore } from "redux";
 import type {
   TodoState,
-  FetchTodosAction,
-  FetchTodosActionError,
-  FetchTodosActionSuccess,
   TodosActions,
 } from "./types.ts";
 import { todosActionTypes } from "./types.ts";
@@ -63,6 +60,11 @@ const todosReducer = (
         loading: true,
         todos: [],
         error: action.payload
+      }
+    case todosActionTypes.DELETE_TODO:
+      return {
+        ...state,
+        todos: state.todos.filter(todo => todo.id != action.payload)
       }
     default:
       return state

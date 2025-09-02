@@ -4,3 +4,24 @@
   padding: 2rem;
   text-align: center;
 }
+
+.todoPropertiesHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todosInCurrentPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.todoInCurrentPage {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pageNumber {
+  display: flex;
+  justify-content: space-evenly;
+}
