@@ -24,6 +24,18 @@ author = 46569891
 task = "shell.exec"
 args = "cd redux1 && npm run dev"
 
+[[workflows.workflow]]
+name = "redux2"
+mode = "sequential"
+author = 46569891
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd redux2 && npm run dev"
+
 [[ports]]
 localPort = 5173
 externalPort = 3000
+
+[agent]
+expertMode = true
