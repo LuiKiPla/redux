@@ -4,3 +4,10 @@
   padding: 2rem;
   text-align: center;
 }
+
+
+.product {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}

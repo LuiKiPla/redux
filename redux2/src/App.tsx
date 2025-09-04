@@ -25,9 +25,9 @@ if (loading) {
   
   return (
   <>
-    <div>
+    <div className='products'>
       {products.map((pro: product) => (
-        <div key={pro.id}>
+        <div className='product' key={pro.id}>
           <img src={pro.image} alt ={pro.title} />
           {pro.title}
         </div>
