@@ -30,7 +30,7 @@ const productsSlice = createSlice({
 })
 
 const rootReducer = combineReducers({
-    productsSlice
+    products: productsSlice.reducer
 })
 
 export default rootReducer

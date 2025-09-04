@@ -8,12 +8,12 @@ import type { product } from './store/products/types'
         
 function App() {
 
-  const { products, loading, error } = useAppSelector(state=> state.productsSlice)
+  const { products, loading, error } = useAppSelector(state=> state.rootReducer.products)
   const dispatch = useAppDispatch()
 
   useEffect(()=> {
     dispatch(fetchProducts())
-  })
+  }, [])
 
 if (loading) {
     return <h1>Идёт загрузка!</h1>;
