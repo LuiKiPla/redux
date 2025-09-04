@@ -5,7 +5,9 @@ interface product {
 }
 
 interface productsState {
-    products: product[]
+    products: product[],
+    loading: boolean,
+    error: string | null
 }
 
 export type {product, productsState}
