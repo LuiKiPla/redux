@@ -44,7 +44,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    console.log('Loaded')
+    console.log("Loaded");
     dispatch(fetchTodos());
   }, []);
 
@@ -90,9 +90,12 @@ function App() {
                   <div className="actionsCell">
                     <div className="actionCell">
                       <button
-                      onClick={() => {
-                        dispatch(deleteTodo(todo.id))
-                      }}>Удалить</button>
+                        onClick={() => {
+                          dispatch(deleteTodo(todo.id));
+                        }}
+                      >
+                        Удалить
+                      </button>
                     </div>
                   </div>
                 </div>
