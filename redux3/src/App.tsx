@@ -9,11 +9,11 @@ function App() {
 
 
   if (isLoading) {
-    <h1>Loading</h1>
+    return <h1>Loading</h1>
   }
 
   if(error) {
-    <h1>Ошибка</h1>
+    return <h1>Ошибка</h1>
   }
 
   return (
